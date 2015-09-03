@@ -200,7 +200,7 @@ def blowcrypt_b64decode(s):
             right |= B64.index(p) << (i * 6)
         for i, p in enumerate(s[6:12]):
             left |= B64.index(p) << (i * 6)
-        res += struct.pack('>LL', left, right)
+        res += struct.pack('>LL', left & 0xFFFFFFFF, right & 0xFFFFFFFF)
         s = s[12:]
     return res
 
